@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "prepare": "husky install",
     "lint:sol": "solhint './contracts/**/*.sol' -w 0",
     "prettier:sol": "prettier --write './contracts/**/*.sol'"
   },
@@ -21,10 +22,5 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn prettier:sol && yarn lint:sol"
-    }
   }
 }
