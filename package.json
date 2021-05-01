@@ -3,15 +3,28 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "lint:sol": "solhint './contracts/**/*.sol' -w 0",
+    "prettier:sol": "prettier --write './contracts/**/*.sol'"
+  },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.0",
     "@nomiclabs/hardhat-waffle": "^2.0.0",
     "chai": "^4.2.0",
     "ethereum-waffle": "^3.0.0",
     "ethers": "^5.0.0",
-    "hardhat": "^2.2.1"
+    "hardhat": "^2.2.1",
+    "husky": "^6.0.0",
+    "prettier": "^2.2.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.10",
+    "solhint": "^3.3.4"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn prettier:sol && yarn lint:sol"
+    }
   }
 }
