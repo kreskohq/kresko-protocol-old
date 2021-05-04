@@ -77,11 +77,7 @@ contract Kresko is Ownable {
     kAssetExists(kAsset)
   {
     require(
-      stableToken.transferFrom(
-        msg.sender,
-        kAssetInfos[kAsset].reserve,
-        amount
-      ),
+      stableToken.transferFrom(msg.sender, kAssetInfos[kAsset].reserve, amount),
       "Kresko: reserve transfer failed"
     );
     uint256 existingCollateralAmountOwned =

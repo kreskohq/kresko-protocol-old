@@ -29,9 +29,6 @@ contract Reserve {
   }
 
   function transferStableTokenToAMM(uint256 amount) external onlyKreskoOrAMM {
-    require(
-      stableToken.transfer(amm, amount),
-      "Reserve: AMM transfer failed"
-    );
+    require(stableToken.transfer(amm, amount), "Reserve: AMM transfer failed");
   }
 }
