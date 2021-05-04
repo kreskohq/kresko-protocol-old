@@ -9,9 +9,7 @@ import { KAsset } from '../typechain/KAsset'
 import { Kresko } from '../typechain/Kresko'
 import { Reserve } from '../typechain/Reserve'
 
-export async function deployKresko(
-	stableToken: ethersType.Contract
-): Promise<Kresko> {
+export async function deployKresko(stableToken: ethersType.Contract): Promise<Kresko> {
 	const decimalMath = await deployDecimalMath()
 	const KreskoContract = await ethers.getContractFactory('Kresko', {
 		libraries: {
@@ -46,11 +44,7 @@ export async function deployKAssetAndFriends(
 	const basicOracle = await deployBasicOracle()
 
 	const KAssetContract = await ethers.getContractFactory('KAsset')
-	const kAsset = (await KAssetContract.deploy(
-		kresko.address,
-		name,
-		symbol
-	)) as KAsset
+	const kAsset = (await KAssetContract.deploy(kresko.address, name, symbol)) as KAsset
 
 	const UniswapMath = await deployuniswapMath()
 	const AMMContract = await ethers.getContractFactory('AMM', {
@@ -88,8 +82,5 @@ async function deployBasicOracle() {
 
 export async function deployERC20Harness() {
 	const ERC20HarnessContract = await ethers.getContractFactory('ERC20Harness')
-	return ERC20HarnessContract.deploy(
-		'ERC20 Harness',
-		'FOO'
-	) as Promise<ERC20Harness>
+	return ERC20HarnessContract.deploy('ERC20 Harness', 'FOO') as Promise<ERC20Harness>
 }

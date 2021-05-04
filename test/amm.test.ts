@@ -1,11 +1,7 @@
 import { expect } from 'chai'
 import { ethers } from 'hardhat'
 import { BigNumber, Signer } from 'ethers'
-import {
-	deployERC20Harness,
-	deployKAssetAndFriends,
-	deployKresko
-} from './utils'
+import { deployERC20Harness, deployKAssetAndFriends, deployKresko } from './utils'
 import { Kresko } from '../typechain/Kresko'
 import { AMM } from '../typechain/AMM'
 import { KAsset } from '../typechain/KAsset'

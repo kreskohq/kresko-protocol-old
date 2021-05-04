@@ -5,11 +5,7 @@ import { ERC20Harness } from '../typechain/ERC20Harness'
 import { KAsset } from '../typechain/KAsset'
 import { Kresko } from '../typechain/Kresko'
 import { Reserve } from '../typechain/Reserve'
-import {
-	deployERC20Harness,
-	deployKAssetAndFriends,
-	deployKresko
-} from './utils'
+import { deployERC20Harness, deployKAssetAndFriends, deployKresko } from './utils'
 
 describe('Kresko', () => {
 	let stableToken: ERC20Harness
@@ -38,9 +34,7 @@ describe('Kresko', () => {
 	describe('collateral percent ownership', () => {
 		describe('getTotalCollateralAmount()', async () => {
 			it('returns 0 when no collateral has ever been deposited', async () => {
-				const totalCollateralAmount = await kresko.getTotalCollateralAmount(
-					kAsset.address
-				)
+				const totalCollateralAmount = await kresko.getTotalCollateralAmount(kAsset.address)
 				expect(totalCollateralAmount.eq(ethers.BigNumber.from(0)))
 			})
 		})
