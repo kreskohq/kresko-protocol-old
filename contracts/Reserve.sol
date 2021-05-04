@@ -6,10 +6,16 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./libraries/CeloRegistry.sol";
 
 contract Reserve {
+  IERC20 public stableToken;
   address public kresko;
   address public amm;
 
-  constructor(address kresko_, address amm_) {
+  constructor(
+    address stableToken_,
+    address kresko_,
+    address amm_
+  ) {
+    stableToken = IERC20(stableToken_);
     kresko = kresko_;
     amm = amm_;
   }
@@ -24,7 +30,7 @@ contract Reserve {
 
   function transferStableTokenToAMM(uint256 amount) external onlyKreskoOrAMM {
     require(
-      CeloRegistry.getStableToken().transfer(amm, amount),
+      stableToken.transfer(amm, amount),
       "Reserve: AMM transfer failed"
     );
   }

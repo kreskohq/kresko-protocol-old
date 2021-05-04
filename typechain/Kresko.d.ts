@@ -30,6 +30,7 @@ interface KreskoInterface extends ethers.utils.Interface {
     "listKAsset(address,address,address)": FunctionFragment;
     "owner()": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
+    "stableToken()": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
   };
 
@@ -61,6 +62,10 @@ interface KreskoInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "renounceOwnership",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "stableToken",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -96,6 +101,10 @@ interface KreskoInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "renounceOwnership",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "stableToken",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -270,6 +279,10 @@ export class Kresko extends Contract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    stableToken(overrides?: CallOverrides): Promise<[string]>;
+
+    "stableToken()"(overrides?: CallOverrides): Promise<[string]>;
+
     transferOwnership(
       newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -397,6 +410,10 @@ export class Kresko extends Contract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  stableToken(overrides?: CallOverrides): Promise<string>;
+
+  "stableToken()"(overrides?: CallOverrides): Promise<string>;
+
   transferOwnership(
     newOwner: string,
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -520,6 +537,10 @@ export class Kresko extends Contract {
 
     "renounceOwnership()"(overrides?: CallOverrides): Promise<void>;
 
+    stableToken(overrides?: CallOverrides): Promise<string>;
+
+    "stableToken()"(overrides?: CallOverrides): Promise<string>;
+
     transferOwnership(
       newOwner: string,
       overrides?: CallOverrides
@@ -633,6 +654,10 @@ export class Kresko extends Contract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    stableToken(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "stableToken()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     transferOwnership(
       newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -738,6 +763,10 @@ export class Kresko extends Contract {
     "renounceOwnership()"(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
+
+    stableToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "stableToken()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transferOwnership(
       newOwner: string,

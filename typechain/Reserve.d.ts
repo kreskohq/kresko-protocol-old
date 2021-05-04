@@ -23,11 +23,16 @@ interface ReserveInterface extends ethers.utils.Interface {
   functions: {
     "amm()": FunctionFragment;
     "kresko()": FunctionFragment;
+    "stableToken()": FunctionFragment;
     "transferStableTokenToAMM(uint256)": FunctionFragment;
   };
 
   encodeFunctionData(functionFragment: "amm", values?: undefined): string;
   encodeFunctionData(functionFragment: "kresko", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "stableToken",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "transferStableTokenToAMM",
     values: [BigNumberish]
@@ -35,6 +40,10 @@ interface ReserveInterface extends ethers.utils.Interface {
 
   decodeFunctionResult(functionFragment: "amm", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "kresko", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "stableToken",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "transferStableTokenToAMM",
     data: BytesLike
@@ -95,6 +104,10 @@ export class Reserve extends Contract {
 
     "kresko()"(overrides?: CallOverrides): Promise<[string]>;
 
+    stableToken(overrides?: CallOverrides): Promise<[string]>;
+
+    "stableToken()"(overrides?: CallOverrides): Promise<[string]>;
+
     transferStableTokenToAMM(
       amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -114,6 +127,10 @@ export class Reserve extends Contract {
 
   "kresko()"(overrides?: CallOverrides): Promise<string>;
 
+  stableToken(overrides?: CallOverrides): Promise<string>;
+
+  "stableToken()"(overrides?: CallOverrides): Promise<string>;
+
   transferStableTokenToAMM(
     amount: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -132,6 +149,10 @@ export class Reserve extends Contract {
     kresko(overrides?: CallOverrides): Promise<string>;
 
     "kresko()"(overrides?: CallOverrides): Promise<string>;
+
+    stableToken(overrides?: CallOverrides): Promise<string>;
+
+    "stableToken()"(overrides?: CallOverrides): Promise<string>;
 
     transferStableTokenToAMM(
       amount: BigNumberish,
@@ -155,6 +176,10 @@ export class Reserve extends Contract {
 
     "kresko()"(overrides?: CallOverrides): Promise<BigNumber>;
 
+    stableToken(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "stableToken()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     transferStableTokenToAMM(
       amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -174,6 +199,10 @@ export class Reserve extends Contract {
     kresko(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "kresko()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    stableToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "stableToken()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transferStableTokenToAMM(
       amount: BigNumberish,

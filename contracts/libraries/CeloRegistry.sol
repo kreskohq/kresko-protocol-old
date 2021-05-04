@@ -5,6 +5,8 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import "../interfaces/ICeloRegistry.sol";
 
+// Not being used right now -- consider this in the future once
+// dev tooling to use the registry is easiers
 library CeloRegistry {
   address private constant REGISTRY =
     0x000000000000000000000000000000000000ce10;
