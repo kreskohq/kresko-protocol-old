@@ -91,45 +91,35 @@ contract AMM is Ownable, ERC20 {
     require(reserveOut > amountOut, "INSUFFICIENT_LIQUIDITY");
   }
 
-  function swapExact(uint256 amountIn, address fromToken) external {
-    uint256 amountOut =
-      fromToken == token0
-        ? getAmountOut(
-          amountIn,
-          IERC20(token0).balanceOf(address(this)),
-          IERC20(token1).balanceOf(address(this))
-        )
-        : getAmountOut(
-          amountIn,
-          IERC20(token1).balanceOf(address(this)),
-          IERC20(token0).balanceOf(address(this))
-        );
+  function swap(uint256 amount, address fromToken) public {
+    require(amount > 0, "Kresko: Invalid swap value");
+    require(
+      fromToken == token0 || fromToken == token1,
+      "Kresko: Invalid swap token"
+    );
+    require(
+      IERC20(fromToken).transferFrom(msg.sender, address(this), amount),
+      "Kresko: Funds not approved"
+    );
 
-    console.log("swapExact", amountIn, amountOut);
-    IERC20(fromToken).transferFrom(msg.sender, address(this), amountIn);
-    fromToken == token0 ? swap(0, amountOut) : swap(amountOut, 0);
-  }
-
-  function swap(uint256 amount0Out, uint256 amount1Out) public {
-    require(!(amount0Out > 0 && amount1Out > 0), "Error");
-
-    if (amount0Out > 0) IERC20(token0).transfer(msg.sender, amount0Out);
-    if (amount1Out > 0) IERC20(token1).transfer(msg.sender, amount1Out);
     uint256 balance0 = IERC20(token0).balanceOf(address(this));
     uint256 balance1 = IERC20(token1).balanceOf(address(this));
-    uint256 amount0In =
-      balance0 > bucket0 - amount0Out ? balance0 - (bucket0 - amount0Out) : 0;
-    uint256 amount1In =
-      balance1 > bucket1 - amount1Out ? balance1 - (bucket1 - amount1Out) : 0;
 
-    require(amount0In > 0 || amount1In > 0, "INSUFFICIENT_INPUT_AMOUNT");
+    uint256 amountOut =
+      fromToken == token0
+        ? getAmountOut(amount, bucket0, bucket1)
+        : getAmountOut(amount, bucket1, bucket0);
 
-    // TODO: Figure out how uniswap is not vulnerable to reentrancy
-    // solhint-disable-next-line
-    bucket0 = balance0;
-    // solhint-disable-next-line
-    bucket1 = balance1;
-
-    require(balance0.mul(balance1) >= bucket0.mul(bucket1), "UniswapV2: K");
+    if (fromToken == token0) {
+      bucket0 = balance0.add(amount);
+      bucket1 = balance1.sub(amountOut);
+      IERC20(token1).transfer(msg.sender, amountOut);
+    } else {
+      // solhint-disable-next-line
+      bucket1 = balance1.add(amount);
+      // solhint-disable-next-line
+      bucket0 = balance0.sub(amountOut);
+      IERC20(token0).transfer(msg.sender, amountOut);
+    }
   }
 }
