@@ -78,16 +78,48 @@ contract AMM is Ownable, ERC20 {
 
   function updateBucketsIfNecessary() public {}
 
+  // given an input amount of an asset and pair reserves, returns the maximum output amount of the other asset
+  function getAmountOut(
+    uint256 amountIn,
+    uint256 reserveIn,
+    uint256 reserveOut
+  ) internal pure returns (uint256 amountOut) {
+    require(amountIn > 0, "UniswapV2Library: INSUFFICIENT_INPUT_AMOUNT");
+    require(
+      reserveIn > 0 && reserveOut > 0,
+      "UniswapV2Library: INSUFFICIENT_LIQUIDITY"
+    );
+
+    uint256 numerator = amountIn.mul(reserveOut);
+    uint256 denominator = reserveIn.add(amountIn);
+    amountOut = numerator / denominator;
+
+    require(reserveOut > amountOut, "INSUFFICIENT_LIQUIDITY");
+  }
+
+  function swapExact(uint256 amountIn, address fromToken) external {
+    uint256 amountOut =
+      fromToken == token0
+        ? getAmountOut(
+          amountIn,
+          IERC20(token0).balanceOf(address(this)),
+          IERC20(token1).balanceOf(address(this))
+        )
+        : getAmountOut(
+          amountIn,
+          IERC20(token1).balanceOf(address(this)),
+          IERC20(token0).balanceOf(address(this))
+        );
+
+    console.log("swapExact", amountIn, amountOut);
+    IERC20(fromToken).transferFrom(msg.sender, address(this), amountIn);
+    fromToken == token0 ? swap(0, amountOut) : swap(amountOut, 0);
+  }
+
   function swap(uint256 amount0Out, uint256 amount1Out) public {
     require(!(amount0Out > 0 && amount1Out > 0), "Error");
 
     updateBucketsIfNecessary();
-
-    console.log(
-      "Start swap",
-      IERC20(token0).balanceOf(address(this)),
-      IERC20(token1).balanceOf(address(this))
-    );
 
     if (amount0Out > 0) IERC20(token0).transfer(msg.sender, amount0Out);
     if (amount1Out > 0) IERC20(token1).transfer(msg.sender, amount1Out);
@@ -98,21 +130,14 @@ contract AMM is Ownable, ERC20 {
     uint256 amount1In =
       balance1 > reserve1 - amount1Out ? balance1 - (reserve1 - amount1Out) : 0;
 
-    console.log("Swap", amount0Out, amount1Out);
-    console.log("Current balances", balance0, balance1);
-    console.log(amount0In, amount1In);
-
     require(
       amount0In > 0 || amount1In > 0,
       "UniswapV2: INSUFFICIENT_INPUT_AMOUNT"
     );
 
-    console.log(balance0, balance1, balance0.mul(balance1));
-    console.log(reserve0, reserve1, (reserve0).mul(reserve1));
+    require(balance0.mul(balance1) >= reserve0.mul(reserve1), "UniswapV2: K");
 
     reserve0 = balance0;
     reserve1 = balance1;
-
-    require(balance0.mul(balance1) >= reserve0.mul(reserve1), "UniswapV2: K");
   }
 }
