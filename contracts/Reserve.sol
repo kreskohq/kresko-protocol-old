@@ -20,7 +20,7 @@ contract Reserve {
   function transferStableTokenToAMM(uint256 amount) external onlyKreskoOrAMM {
     require(
       CeloRegistry.getStableToken().transfer(amm, amount),
-      "Reserve: transfer to AMM failed"
+      "Reserve: AMM transfer failed"
     );
   }
 }

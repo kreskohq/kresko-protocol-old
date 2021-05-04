@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "compile": "hardhat compile",
     "prepare": "husky install",
     "lint:sol": "solhint './contracts/**/*.sol' -w 0",
     "prettier:sol": "prettier --write './contracts/**/*.sol'"
