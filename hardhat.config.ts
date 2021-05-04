@@ -1,7 +1,6 @@
 import "@nomiclabs/hardhat-ethers"
 import '@nomiclabs/hardhat-waffle'
 import '@typechain/hardhat'
-import 'hardhat-deploy'
 
 import { task } from 'hardhat/config'
 import { HardhatUserConfig } from 'hardhat/config'
@@ -17,10 +16,7 @@ task('accounts', 'Prints the list of accounts', async (_args, hre) => {
 })
 
 const config: HardhatUserConfig =  {
-  solidity: "0.8.4",
-  namedAccounts: {
-    deployer: 0
-  }
+  solidity: "0.8.4"
 }
 
 // You need to export an object to set up your config

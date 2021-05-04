@@ -12,16 +12,16 @@ contract BasicOracle {
     _;
   }
 
-  constructor(address oracle_) {
-    _setReporter(oracle_);
+  constructor(address reporter_) {
+    _setReporter(reporter_);
   }
 
   function setValue(uint256 newValue) external onlyReporter {
     value = newValue;
   }
 
-  function setReporter(address newOracle) external onlyReporter {
-    _setReporter(newOracle);
+  function setReporter(address newReporter) external onlyReporter {
+    _setReporter(newReporter);
   }
 
   function _setReporter(address newReporter) internal {

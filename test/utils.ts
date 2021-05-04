@@ -1,7 +1,6 @@
 // Workaround to use ethers types in function parameters
 import { ethers as ethersType } from 'ethers'
 import {
-	deployments,
 	ethers
 } from 'hardhat'
 import { AMM } from '../typechain/AMM';
@@ -10,29 +9,27 @@ import { KAsset } from '../typechain/KAsset';
 import { Kresko } from '../typechain/Kresko';
 import { Reserve } from '../typechain/Reserve';
 
-// export async function deployKresko(): Promise<Kresko> {
-// 	// const decimalMath = await deployDecimalMath()
+export async function deployKresko(): Promise<Kresko> {
+	// const celoRegistry = await deployCeloRegistry()
+	const decimalMath = await deployDecimalMath()
 
-// 	// const KreskoContract = await ethers.getContractFactory('Kresko', {
-// 	// 	libraries: {
-// 	// 		DecimalMath: decimalMath.address
-// 	// 	}
-// 	// })
-// 	// return KreskoContract.deploy() as Promise<Kresko>
-
-// 	return deployments.fixture(['Kresko'])
-// }]
-
-export const setupKreskoWithKAsset = deployments.createFixture(async () => {
-  await deployments.fixture('Kresko')
-	return {
-    kresko: <Kresko>await ethers.getContract('Kresko'),
-  }
-})
+	const KreskoContract = await ethers.getContractFactory('Kresko', {
+		libraries: {
+			// CeloRegistry: celoRegistry.address,
+			DecimalMath: decimalMath.address
+		}
+	})
+	return KreskoContract.deploy() as Promise<Kresko>
+}
 
 async function deployDecimalMath() {
 	const DecimalMathContract = await ethers.getContractFactory('DecimalMath')
 	return DecimalMathContract.deploy() as Promise<DecimalMath>
+}
+
+async function deployCeloRegistry() {
+	const CeloRegistryContract = await ethers.getContractFactory('CeloRegistry')
+	return CeloRegistryContract.deploy()
 }
 
 export async function deployKAssetAndFriends(
@@ -40,15 +37,17 @@ export async function deployKAssetAndFriends(
 	name: string,
 	symbol: string
 ) {
-	const KAssetConntract = await ethers.getContractFactory('KAsset')
-	const kAsset = (await KAssetConntract.deploy(
+	const basicOracle = await deployBasicOracle()
+	
+	const KAssetContract = await ethers.getContractFactory('KAsset')
+	const kAsset = (await KAssetContract.deploy(
 		kresko.address,
 		name,
 		symbol
 	)) as KAsset
 
 	const AMMContract = await ethers.getContractFactory('AMM')
-	const amm = (await AMMContract.deploy()) as AMM
+	const amm = (await AMMContract.deploy(basicOracle.address)) as AMM
 
 	const ReserveContract = await ethers.getContractFactory('Reserve')
 	const reserve = (await ReserveContract.deploy(
@@ -63,4 +62,10 @@ export async function deployKAssetAndFriends(
 		amm,
 		reserve
 	}
+}
+
+async function deployBasicOracle() {
+	const BasicOracleContract = await ethers.getContractFactory('BasicOracle')
+	const reporter = (await ethers.getSigners())[0].address
+	return BasicOracleContract.deploy(reporter)
 }

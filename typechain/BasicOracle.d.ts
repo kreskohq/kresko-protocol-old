@@ -99,12 +99,12 @@ export class BasicOracle extends Contract {
     "reporter()"(overrides?: CallOverrides): Promise<[string]>;
 
     setReporter(
-      newOracle: string,
+      newReporter: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     "setReporter(address)"(
-      newOracle: string,
+      newReporter: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -128,12 +128,12 @@ export class BasicOracle extends Contract {
   "reporter()"(overrides?: CallOverrides): Promise<string>;
 
   setReporter(
-    newOracle: string,
+    newReporter: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   "setReporter(address)"(
-    newOracle: string,
+    newReporter: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -156,10 +156,10 @@ export class BasicOracle extends Contract {
 
     "reporter()"(overrides?: CallOverrides): Promise<string>;
 
-    setReporter(newOracle: string, overrides?: CallOverrides): Promise<void>;
+    setReporter(newReporter: string, overrides?: CallOverrides): Promise<void>;
 
     "setReporter(address)"(
-      newOracle: string,
+      newReporter: string,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -185,12 +185,12 @@ export class BasicOracle extends Contract {
     "reporter()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     setReporter(
-      newOracle: string,
+      newReporter: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     "setReporter(address)"(
-      newOracle: string,
+      newReporter: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -215,12 +215,12 @@ export class BasicOracle extends Contract {
     "reporter()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     setReporter(
-      newOracle: string,
+      newReporter: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
     "setReporter(address)"(
-      newOracle: string,
+      newReporter: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 

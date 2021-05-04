@@ -9,10 +9,7 @@ contract Reserve {
   address public kresko;
   address public amm;
 
-  constructor(
-    address kresko_,
-    address amm_
-  ) {
+  constructor(address kresko_, address amm_) {
     kresko = kresko_;
     amm = amm_;
   }
