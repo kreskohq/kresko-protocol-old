@@ -2,6 +2,7 @@
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import "./interfaces/IOracle.sol";
 
@@ -40,6 +41,8 @@ contract Kresko is Ownable {
    */
   mapping(address => uint256[]) public collateralLedgers;
 
+  IERC20 public stableToken;
+
   modifier kAssetExists(address kAsset) {
     require(
       kAssetInfos[kAsset].reserve != address(0),
@@ -51,6 +54,10 @@ contract Kresko is Ownable {
   modifier kAssetIsActive(address kAsset) {
     require(kAssetInfos[kAsset].active, "Kresko: kAsset not active");
     _;
+  }
+
+  constructor(address stableToken_) {
+    stableToken = IERC20(stableToken_);
   }
 
   function listKAsset(
@@ -70,11 +77,7 @@ contract Kresko is Ownable {
     kAssetExists(kAsset)
   {
     require(
-      CeloRegistry.getStableToken().transferFrom(
-        msg.sender,
-        kAssetInfos[kAsset].reserve,
-        amount
-      ),
+      stableToken.transferFrom(msg.sender, kAssetInfos[kAsset].reserve, amount),
       "Kresko: reserve transfer failed"
     );
     uint256 existingCollateralAmountOwned =
@@ -93,7 +96,6 @@ contract Kresko is Ownable {
     kAssetExists(kAsset)
     returns (uint256)
   {
-    IERC20 stableToken = CeloRegistry.getStableToken();
     return
       stableToken.balanceOf(kAssetInfos[kAsset].amm) +
       stableToken.balanceOf(kAssetInfos[kAsset].reserve);
