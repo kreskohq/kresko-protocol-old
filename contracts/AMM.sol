@@ -7,6 +7,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "hardhat/console.sol";
 
+import "./libraries/KreskoMath.sol";
 import "./interfaces/IOracle.sol";
 import "./interfaces/IReserve.sol";
 
@@ -19,8 +20,8 @@ contract AMM is Ownable, ERC20 {
   address public token0;
   address public token1;
 
-  uint256 reserve0;
-  uint256 reserve1;
+  uint256 public bucket0;
+  uint256 public bucket1;
 
   event SetOracle(address oracle);
 
@@ -49,37 +50,28 @@ contract AMM is Ownable, ERC20 {
     emit SetOracle(newOracle);
   }
 
-  function sqrt(uint256 x) private pure returns (uint256 y) {
-    uint256 z = (x + 1) / 2;
-    y = x;
-    while (z < y) {
-      y = z;
-      z = (x / z + z) / 2;
-    }
-  }
-
   function mint() public {
     uint256 balance0 = IERC20(token0).balanceOf(address(this));
     uint256 balance1 = IERC20(token1).balanceOf(address(this));
-    uint256 amount0 = balance0.sub(reserve0);
-    uint256 amount1 = balance1.sub(reserve1);
+    uint256 amount0 = balance0.sub(bucket0);
+    uint256 amount1 = balance1.sub(bucket1);
 
     uint256 totalSupply = totalSupply();
     if (totalSupply == 0) {
-      uint256 liquidity = sqrt(amount0.mul(amount1));
+      uint256 liquidity = KreskoMath.sqrt(amount0.mul(amount1));
       _mint(msg.sender, liquidity);
     } else {
       uint256 liquidity =
         Math.min(
-          amount0.mul(totalSupply) / reserve0,
-          amount1.mul(totalSupply) / reserve1
+          amount0.mul(totalSupply) / bucket0,
+          amount1.mul(totalSupply) / bucket1
         );
       require(liquidity > 0, "INSUFFICIENT_LIQUIDITY_MINTED");
       _mint(msg.sender, liquidity);
     }
 
-    reserve0 = balance0;
-    reserve1 = balance1;
+    bucket0 = balance0;
+    bucket1 = balance1;
   }
 
   function removeLiquidity() public {}
@@ -134,18 +126,18 @@ contract AMM is Ownable, ERC20 {
     uint256 balance0 = IERC20(token0).balanceOf(address(this));
     uint256 balance1 = IERC20(token1).balanceOf(address(this));
     uint256 amount0In =
-      balance0 > reserve0 - amount0Out ? balance0 - (reserve0 - amount0Out) : 0;
+      balance0 > bucket0 - amount0Out ? balance0 - (bucket0 - amount0Out) : 0;
     uint256 amount1In =
-      balance1 > reserve1 - amount1Out ? balance1 - (reserve1 - amount1Out) : 0;
+      balance1 > bucket1 - amount1Out ? balance1 - (bucket1 - amount1Out) : 0;
 
     require(
       amount0In > 0 || amount1In > 0,
       "UniswapV2: INSUFFICIENT_INPUT_AMOUNT"
     );
 
-    require(balance0.mul(balance1) >= reserve0.mul(reserve1), "UniswapV2: K");
+    require(balance0.mul(balance1) >= bucket0.mul(bucket1), "UniswapV2: K");
 
-    reserve0 = balance0;
-    reserve1 = balance1;
+    bucket0 = balance0;
+    bucket1 = balance1;
   }
 }

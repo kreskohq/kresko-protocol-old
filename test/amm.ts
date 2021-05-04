@@ -1,36 +1,22 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 import { BigNumber } from "ethers";
+import { deployKAssetAndFriends, deployKresko } from "./utils";
+import { Kresko } from "../typechain/Kresko";
+import { AMM } from "../typechain/AMM";
+import { KAsset } from "../typechain/KAsset";
 
-const nullAddress = "0x0000000000000000000000000000000000000000";
-
-function expand(n: number) {
-  return BigNumber.from(n).mul(BigNumber.from(10).pow(18));
-}
-
-function sqrt(value) {
-  const ONE = BigNumber.from(1);
-  const TWO = BigNumber.from(2);
-  const x = BigNumber.from(value);
-  let z = x.add(ONE).div(TWO);
-  let y = x;
-  while (z.sub(y).isNegative()) {
-    y = z;
-    z = x.div(z).add(z).div(TWO);
-  }
-  return y;
-}
+import { expand, sqrt } from "./maths";
 
 async function w(x: Promise<any>) {
   await (await x).wait();
 }
 
-const ONE = expand(1);
-const TEN = expand(10);
-
 describe("AMM", () => {
-  let amm;
-  let kAsset;
+  let kresko: Kresko;
+
+  let amm: AMM;
+  let kAsset: KAsset;
   let cUSD;
 
   let owner;
@@ -38,18 +24,13 @@ describe("AMM", () => {
   let user1;
 
   beforeEach(async () => {
+    kresko = await deployKresko();
+    ({ amm, kAsset } = await deployKAssetAndFriends(
+      kresko,
+      "Kresko TSLA",
+      "kTSLA"
+    ));
     [owner, user0, user1] = await ethers.getSigners();
-
-    const KAsset = await ethers.getContractFactory("KAsset");
-    kAsset = await KAsset.deploy(owner.address, "Kresko Tesla", "kTSLA");
-    const CUSD = await ethers.getContractFactory("cUSD");
-    cUSD = await CUSD.deploy();
-    const AMM = await ethers.getContractFactory("AMM");
-    amm = await AMM.deploy(nullAddress, cUSD.address, kAsset.address);
-
-    await kAsset.deployed();
-    await cUSD.deployed();
-    await amm.deployed();
 
     await w(kAsset.mint(owner.address, expand(1000)));
     await w(cUSD.mint(owner.address, expand(100_000)));
