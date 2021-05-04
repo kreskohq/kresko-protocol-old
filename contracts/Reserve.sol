@@ -9,6 +9,11 @@ contract Reserve {
   address public kresko;
   address public amm;
 
+  constructor(address kresko_, address amm_) {
+    kresko = kresko_;
+    amm = amm_;
+  }
+
   modifier onlyKreskoOrAMM() {
     require(
       msg.sender == kresko || msg.sender == amm,
@@ -20,7 +25,7 @@ contract Reserve {
   function transferStableTokenToAMM(uint256 amount) external onlyKreskoOrAMM {
     require(
       CeloRegistry.getStableToken().transfer(amm, amount),
-      "Reserve: transfer to AMM failed"
+      "Reserve: AMM transfer failed"
     );
   }
 }

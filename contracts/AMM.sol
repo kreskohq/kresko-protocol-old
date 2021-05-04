@@ -8,11 +8,14 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "hardhat/console.sol";
 
 import "./interfaces/IOracle.sol";
+import "./interfaces/IReserve.sol";
 
 contract AMM is Ownable, ERC20 {
   using SafeMath for uint256;
 
   IOracle public oracle;
+  IReserve public reserve;
+
   address public token0;
   address public token1;
 
@@ -30,6 +33,11 @@ contract AMM is Ownable, ERC20 {
     token1 = token1_;
 
     _setOracle(oracle_);
+  }
+
+  function setReserve(address reserve_) external onlyOwner {
+    require(address(reserve) == address(0), "AMM: Reserve already set");
+    reserve = IReserve(reserve_);
   }
 
   function setOracle(address newOracle) external onlyOwner {
