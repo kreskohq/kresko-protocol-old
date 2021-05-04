@@ -9,6 +9,14 @@ contract Reserve {
   address public kresko;
   address public amm;
 
+  constructor(
+    address kresko_,
+    address amm_
+  ) {
+    kresko = kresko_;
+    amm = amm_;
+  }
+
   modifier onlyKreskoOrAMM() {
     require(
       msg.sender == kresko || msg.sender == amm,
