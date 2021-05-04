@@ -5,7 +5,11 @@ import { ERC20Harness } from '../typechain/ERC20Harness'
 import { KAsset } from '../typechain/KAsset'
 import { Kresko } from '../typechain/Kresko'
 import { Reserve } from '../typechain/Reserve'
-import { deployERC20Harness, deployKAssetAndFriends, deployKresko } from './utils'
+import {
+	deployERC20Harness,
+	deployKAssetAndFriends,
+	deployKresko
+} from './utils'
 
 describe('Kresko', () => {
 	let stableToken: ERC20Harness
@@ -28,11 +32,7 @@ describe('Kresko', () => {
 		kAsset = deployedKAssetAndFriends.kAsset
 		reserve = deployedKAssetAndFriends.reserve
 
-		await kresko.listKAsset(
-			kAsset.address,
-			amm.address,
-			reserve.address
-		)
+		await kresko.listKAsset(kAsset.address, amm.address, reserve.address)
 	})
 
 	describe('collateral percent ownership', () => {
@@ -41,9 +41,7 @@ describe('Kresko', () => {
 				const totalCollateralAmount = await kresko.getTotalCollateralAmount(
 					kAsset.address
 				)
-				expect(totalCollateralAmount.eq(
-					ethers.BigNumber.from(0)
-				))
+				expect(totalCollateralAmount.eq(ethers.BigNumber.from(0)))
 			})
 		})
 
@@ -53,10 +51,8 @@ describe('Kresko', () => {
 					kAsset.address,
 					'0xf00d000000000000000000000000000000000000'
 				)
-				expect(collateralAmountOwned.eq(
-					ethers.BigNumber.from(0)
-				))
+				expect(collateralAmountOwned.eq(ethers.BigNumber.from(0)))
 			})
 		})
 	})
-});
+})

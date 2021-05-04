@@ -1,16 +1,17 @@
 // Workaround to use ethers types in function parameters
 import { ethers as ethersType } from 'ethers'
-import {
-	ethers
-} from 'hardhat'
-import { AMM } from '../typechain/AMM';
-import { DecimalMath } from '../typechain/DecimalMath';
-import { ERC20Harness } from '../typechain/ERC20Harness';
-import { KAsset } from '../typechain/KAsset';
-import { Kresko } from '../typechain/Kresko';
-import { Reserve } from '../typechain/Reserve';
+import { ethers } from 'hardhat'
+import { AMM } from '../typechain/AMM'
+import { DecimalMath } from '../typechain/DecimalMath'
+import { UniswapMath } from '../typechain/UniswapMath'
+import { ERC20Harness } from '../typechain/ERC20Harness'
+import { KAsset } from '../typechain/KAsset'
+import { Kresko } from '../typechain/Kresko'
+import { Reserve } from '../typechain/Reserve'
 
-export async function deployKresko(stableToken: ethersType.Contract): Promise<Kresko> {
+export async function deployKresko(
+	stableToken: ethersType.Contract
+): Promise<Kresko> {
 	const decimalMath = await deployDecimalMath()
 	const KreskoContract = await ethers.getContractFactory('Kresko', {
 		libraries: {
@@ -18,14 +19,17 @@ export async function deployKresko(stableToken: ethersType.Contract): Promise<Kr
 			DecimalMath: decimalMath.address
 		}
 	})
-	return KreskoContract.deploy(
-		stableToken.address
-	) as Promise<Kresko>
+	return KreskoContract.deploy(stableToken.address) as Promise<Kresko>
 }
 
 async function deployDecimalMath() {
 	const DecimalMathContract = await ethers.getContractFactory('DecimalMath')
 	return DecimalMathContract.deploy() as Promise<DecimalMath>
+}
+
+async function deployuniswapMath() {
+	const DecimalMathContract = await ethers.getContractFactory('UniswapMath')
+	return DecimalMathContract.deploy() as Promise<UniswapMath>
 }
 
 async function deployCeloRegistry() {
@@ -40,7 +44,7 @@ export async function deployKAssetAndFriends(
 	symbol: string
 ) {
 	const basicOracle = await deployBasicOracle()
-	
+
 	const KAssetContract = await ethers.getContractFactory('KAsset')
 	const kAsset = (await KAssetContract.deploy(
 		kresko.address,
@@ -48,8 +52,17 @@ export async function deployKAssetAndFriends(
 		symbol
 	)) as KAsset
 
-	const AMMContract = await ethers.getContractFactory('AMM')
-	const amm = (await AMMContract.deploy(basicOracle.address)) as AMM
+	const UniswapMath = await deployuniswapMath()
+	const AMMContract = await ethers.getContractFactory('AMM', {
+		libraries: {
+			UniswapMath: UniswapMath.address
+		}
+	})
+	const amm = (await AMMContract.deploy(
+		basicOracle.address,
+		stableToken.address,
+		kAsset.address
+	)) as AMM
 
 	const ReserveContract = await ethers.getContractFactory('Reserve')
 	const reserve = (await ReserveContract.deploy(
@@ -75,5 +88,8 @@ async function deployBasicOracle() {
 
 export async function deployERC20Harness() {
 	const ERC20HarnessContract = await ethers.getContractFactory('ERC20Harness')
-	return ERC20HarnessContract.deploy('ERC20 Harness', 'FOO') as Promise<ERC20Harness>
+	return ERC20HarnessContract.deploy(
+		'ERC20 Harness',
+		'FOO'
+	) as Promise<ERC20Harness>
 }

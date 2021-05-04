@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "hardhat/console.sol";
 
-import "./libraries/KreskoMath.sol";
+import "./libraries/UniswapMath.sol";
 import "./interfaces/IOracle.sol";
 import "./interfaces/IReserve.sol";
 
@@ -50,6 +50,7 @@ contract AMM is Ownable, ERC20 {
     emit SetOracle(newOracle);
   }
 
+  // low level function that must be called from another SC
   function mint() public {
     uint256 balance0 = IERC20(token0).balanceOf(address(this));
     uint256 balance1 = IERC20(token1).balanceOf(address(this));
@@ -58,7 +59,7 @@ contract AMM is Ownable, ERC20 {
 
     uint256 totalSupply = totalSupply();
     if (totalSupply == 0) {
-      uint256 liquidity = KreskoMath.sqrt(amount0.mul(amount1));
+      uint256 liquidity = UniswapMath.sqrt(amount0.mul(amount1));
       _mint(msg.sender, liquidity);
     } else {
       uint256 liquidity =
@@ -74,21 +75,14 @@ contract AMM is Ownable, ERC20 {
     bucket1 = balance1;
   }
 
-  function removeLiquidity() public {}
-
-  function updateBucketsIfNecessary() public {}
-
   // given an input amount of an asset and pair reserves, returns the maximum output amount of the other asset
   function getAmountOut(
     uint256 amountIn,
     uint256 reserveIn,
     uint256 reserveOut
   ) internal pure returns (uint256 amountOut) {
-    require(amountIn > 0, "UniswapV2Library: INSUFFICIENT_INPUT_AMOUNT");
-    require(
-      reserveIn > 0 && reserveOut > 0,
-      "UniswapV2Library: INSUFFICIENT_LIQUIDITY"
-    );
+    require(amountIn > 0, "INSUFFICIENT_INPUT_AMOUNT");
+    require(reserveIn > 0 && reserveOut > 0, "INSUFFICIENT_LIQUIDITY");
 
     uint256 numerator = amountIn.mul(reserveOut);
     uint256 denominator = reserveIn.add(amountIn);
@@ -119,8 +113,6 @@ contract AMM is Ownable, ERC20 {
   function swap(uint256 amount0Out, uint256 amount1Out) public {
     require(!(amount0Out > 0 && amount1Out > 0), "Error");
 
-    updateBucketsIfNecessary();
-
     if (amount0Out > 0) IERC20(token0).transfer(msg.sender, amount0Out);
     if (amount1Out > 0) IERC20(token1).transfer(msg.sender, amount1Out);
     uint256 balance0 = IERC20(token0).balanceOf(address(this));
@@ -130,14 +122,14 @@ contract AMM is Ownable, ERC20 {
     uint256 amount1In =
       balance1 > bucket1 - amount1Out ? balance1 - (bucket1 - amount1Out) : 0;
 
-    require(
-      amount0In > 0 || amount1In > 0,
-      "UniswapV2: INSUFFICIENT_INPUT_AMOUNT"
-    );
+    require(amount0In > 0 || amount1In > 0, "INSUFFICIENT_INPUT_AMOUNT");
+
+    // TODO: Figure out how uniswap is not vulnerable to reentrancy
+    // solhint-disable-next-line
+    bucket0 = balance0;
+    // solhint-disable-next-line
+    bucket1 = balance1;
 
     require(balance0.mul(balance1) >= bucket0.mul(bucket1), "UniswapV2: K");
-
-    bucket0 = balance0;
-    bucket1 = balance1;
   }
 }
