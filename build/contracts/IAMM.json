@@ -1,0 +1,674 @@
+{
+  "contractName": "IAMM",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "oracle",
+      "outputs": [
+        {
+          "internalType": "contract IOracle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "reserve",
+      "outputs": [
+        {
+          "internalType": "contract IReserve",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "kAssetBucket",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "addLiquidity",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"addLiquidity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"kAssetBucket\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"oracle\",\"outputs\":[{\"internalType\":\"contract IOracle\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"reserve\",\"outputs\":[{\"internalType\":\"contract IReserve\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IAMM.sol\":\"IAMM\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":999999},\"remappings\":[]},\"sources\":{\"/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IAMM.sol\":{\"keccak256\":\"0xc68a9542f56375ff09472a48be53b6e9bfe20a41bcc5e38414d74b0cb5a38781\",\"license\":\"Unlicense\",\"urls\":[\"bzz-raw://d940ed80b235270eef5f236bbe4f817c7e0126bca734398f206de86201f439e0\",\"dweb:/ipfs/QmSQQ6yDgdzgHxHzb5SS21nCdAGxd6na8akD3eF3CdButc\"]},\"/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IOracle.sol\":{\"keccak256\":\"0x8f45b23cdb8ddc22904e925cdc6e90611cdbd8729c7ad93a919ee6d5bcef77eb\",\"license\":\"Unlicense\",\"urls\":[\"bzz-raw://600eeb14a6030115a7ea4e01906faff96a09932dc4b6e2056eaddd95392b4288\",\"dweb:/ipfs/QmVvDJCygpNxF7VRuMxthxmfbz7UQkEguKN5aUWQrhHjhH\"]},\"/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IReserve.sol\":{\"keccak256\":\"0x34ce365374925645c46fbf0d8028eb728701075fd89d58b4303f8055c01d7c66\",\"license\":\"Unlicense\",\"urls\":[\"bzz-raw://5eb1f98d6c59a3f0d9e66be4c3867395b940cd0b4bfea9d3f6d5da753f64be93\",\"dweb:/ipfs/QmRef3wnMgAwCnZnWSr3qEup1MJpNqqbgYaP9iJZAtp6VS\"]},\"@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0x1cae4f85f114ff17b90414f5da67365b1d00337abb5bce9bf944eb78a2c0673c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d5ff16b336ce8f906478d5f2eecc6435e00833bdc0b92f6b209cf9e92cb5b2b7\",\"dweb:/ipfs/QmRD1rAZEqQ73C33cdA3QoUyBDMEWnNKNMc6PNkAZWHeQQ\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0xf930d2df426bfcfc1f7415be724f04081c96f4fb9ec8d0e3a521c07692dface0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://fc2bfdea0d2562c76fb3c4cf70a86c6ba25c5a30e8f8515c95aafdf8383f8395\",\"dweb:/ipfs/QmTbFya18786ckJfLYUoWau9jBTKfmWnWm5XSViWvB7PXN\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "//SPDX-License-Identifier: Unlicense\npragma solidity ^0.8.4;\n\nimport \"@openzeppelin/contracts/access/Ownable.sol\";\n\nimport \"./IOracle.sol\";\nimport \"./IReserve.sol\";\n\ninterface IAMM {\n  function oracle() external view returns (IOracle);\n\n  function reserve() external view returns (IReserve);\n\n  function kAssetBucket() external view returns (uint256);\n\n  function addLiquidity() external;\n}\n",
+  "sourcePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IAMM.sol",
+  "ast": {
+    "absolutePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IAMM.sol",
+    "exportedSymbols": {
+      "Context": [
+        2712
+      ],
+      "IAMM": [
+        1492
+      ],
+      "IOracle": [
+        1547
+      ],
+      "IReserve": [
+        1555
+      ],
+      "Ownable": [
+        2079
+      ]
+    },
+    "id": 1493,
+    "license": "Unlicense",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1468,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:23:7"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
+        "file": "@openzeppelin/contracts/access/Ownable.sol",
+        "id": 1469,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1493,
+        "sourceUnit": 2080,
+        "src": "62:52:7",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IOracle.sol",
+        "file": "./IOracle.sol",
+        "id": 1470,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1493,
+        "sourceUnit": 1548,
+        "src": "116:23:7",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IReserve.sol",
+        "file": "./IReserve.sol",
+        "id": 1471,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1493,
+        "sourceUnit": 1556,
+        "src": "140:24:7",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 1492,
+        "linearizedBaseContracts": [
+          1492
+        ],
+        "name": "IAMM",
+        "nameLocation": "176:4:7",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "7dc0d1d0",
+            "id": 1477,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "oracle",
+            "nameLocation": "194:6:7",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1472,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "200:2:7"
+            },
+            "returnParameters": {
+              "id": 1476,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1475,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1477,
+                  "src": "226:7:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IOracle_$1547",
+                    "typeString": "contract IOracle"
+                  },
+                  "typeName": {
+                    "id": 1474,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1473,
+                      "name": "IOracle",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1547,
+                      "src": "226:7:7"
+                    },
+                    "referencedDeclaration": 1547,
+                    "src": "226:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IOracle_$1547",
+                      "typeString": "contract IOracle"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "225:9:7"
+            },
+            "scope": 1492,
+            "src": "185:50:7",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "cd3293de",
+            "id": 1483,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "reserve",
+            "nameLocation": "248:7:7",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1478,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "255:2:7"
+            },
+            "returnParameters": {
+              "id": 1482,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1481,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1483,
+                  "src": "281:8:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IReserve_$1555",
+                    "typeString": "contract IReserve"
+                  },
+                  "typeName": {
+                    "id": 1480,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1479,
+                      "name": "IReserve",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1555,
+                      "src": "281:8:7"
+                    },
+                    "referencedDeclaration": 1555,
+                    "src": "281:8:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IReserve_$1555",
+                      "typeString": "contract IReserve"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "280:10:7"
+            },
+            "scope": 1492,
+            "src": "239:52:7",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "ab9de36c",
+            "id": 1488,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "kAssetBucket",
+            "nameLocation": "304:12:7",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1484,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "316:2:7"
+            },
+            "returnParameters": {
+              "id": 1487,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1486,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1488,
+                  "src": "342:7:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1485,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "342:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "341:9:7"
+            },
+            "scope": 1492,
+            "src": "295:56:7",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "e8078d94",
+            "id": 1491,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addLiquidity",
+            "nameLocation": "364:12:7",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1489,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "376:2:7"
+            },
+            "returnParameters": {
+              "id": 1490,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "387:0:7"
+            },
+            "scope": 1492,
+            "src": "355:33:7",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1493,
+        "src": "166:224:7",
+        "usedErrors": []
+      }
+    ],
+    "src": "37:354:7"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IAMM.sol",
+    "exportedSymbols": {
+      "Context": [
+        2712
+      ],
+      "IAMM": [
+        1492
+      ],
+      "IOracle": [
+        1547
+      ],
+      "IReserve": [
+        1555
+      ],
+      "Ownable": [
+        2079
+      ]
+    },
+    "id": 1493,
+    "license": "Unlicense",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1468,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:23:7"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
+        "file": "@openzeppelin/contracts/access/Ownable.sol",
+        "id": 1469,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1493,
+        "sourceUnit": 2080,
+        "src": "62:52:7",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IOracle.sol",
+        "file": "./IOracle.sol",
+        "id": 1470,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1493,
+        "sourceUnit": 1548,
+        "src": "116:23:7",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IReserve.sol",
+        "file": "./IReserve.sol",
+        "id": 1471,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1493,
+        "sourceUnit": 1556,
+        "src": "140:24:7",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 1492,
+        "linearizedBaseContracts": [
+          1492
+        ],
+        "name": "IAMM",
+        "nameLocation": "176:4:7",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "7dc0d1d0",
+            "id": 1477,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "oracle",
+            "nameLocation": "194:6:7",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1472,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "200:2:7"
+            },
+            "returnParameters": {
+              "id": 1476,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1475,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1477,
+                  "src": "226:7:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IOracle_$1547",
+                    "typeString": "contract IOracle"
+                  },
+                  "typeName": {
+                    "id": 1474,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1473,
+                      "name": "IOracle",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1547,
+                      "src": "226:7:7"
+                    },
+                    "referencedDeclaration": 1547,
+                    "src": "226:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IOracle_$1547",
+                      "typeString": "contract IOracle"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "225:9:7"
+            },
+            "scope": 1492,
+            "src": "185:50:7",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "cd3293de",
+            "id": 1483,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "reserve",
+            "nameLocation": "248:7:7",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1478,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "255:2:7"
+            },
+            "returnParameters": {
+              "id": 1482,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1481,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1483,
+                  "src": "281:8:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IReserve_$1555",
+                    "typeString": "contract IReserve"
+                  },
+                  "typeName": {
+                    "id": 1480,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1479,
+                      "name": "IReserve",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1555,
+                      "src": "281:8:7"
+                    },
+                    "referencedDeclaration": 1555,
+                    "src": "281:8:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IReserve_$1555",
+                      "typeString": "contract IReserve"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "280:10:7"
+            },
+            "scope": 1492,
+            "src": "239:52:7",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "ab9de36c",
+            "id": 1488,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "kAssetBucket",
+            "nameLocation": "304:12:7",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1484,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "316:2:7"
+            },
+            "returnParameters": {
+              "id": 1487,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1486,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1488,
+                  "src": "342:7:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1485,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "342:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "341:9:7"
+            },
+            "scope": 1492,
+            "src": "295:56:7",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "e8078d94",
+            "id": 1491,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addLiquidity",
+            "nameLocation": "364:12:7",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1489,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "376:2:7"
+            },
+            "returnParameters": {
+              "id": 1490,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "387:0:7"
+            },
+            "scope": 1492,
+            "src": "355:33:7",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1493,
+        "src": "166:224:7",
+        "usedErrors": []
+      }
+    ],
+    "src": "37:354:7"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.0",
+  "updatedAt": "2022-02-02T18:24:20.555Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

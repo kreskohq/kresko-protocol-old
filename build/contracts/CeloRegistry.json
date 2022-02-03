@@ -1,0 +1,943 @@
+{
+  "contractName": "CeloRegistry",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/pk/Projects/kresko/kresko-protocol-old/contracts/libraries/CeloRegistry.sol\":\"CeloRegistry\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":999999},\"remappings\":[]},\"sources\":{\"/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/ICeloRegistry.sol\":{\"keccak256\":\"0x838bce7399cdec53650dae69f351c77b556eb59d3df1e4ae7544271c31c06adf\",\"license\":\"Unlicense\",\"urls\":[\"bzz-raw://2f8fbb0c6ec1d4a7b1f74be1170db2a8c833871c4f1d5e5dde800ee3f875f059\",\"dweb:/ipfs/QmbdsNvse1WpWf78LzhWzR5NLLy2TDs4HMY4w114kW3Q5t\"]},\"/Users/pk/Projects/kresko/kresko-protocol-old/contracts/libraries/CeloRegistry.sol\":{\"keccak256\":\"0xcda95b93dd8ac6375c47c8623bbca0a562c9b9900bb69ce2da06410f6d85263b\",\"license\":\"Unlicense\",\"urls\":[\"bzz-raw://7074f56fd5752939e09e56b80673ae9e35d646b7c2d97e06e8872fef7d6b2175\",\"dweb:/ipfs/QmNkDsqgAoGNS2b3kQ1eoj3UQw7wGMKxqeAmo2Gtv4UUNS\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xf8e8d118a7a8b2e134181f7da655f6266aa3a0f9134b2605747139fcb0c5d835\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9ec48567e7ad06acb670980d5cdf3fd7f3949bf12894f02d68c3bb43e75aa84f\",\"dweb:/ipfs/QmaG3R2J9cz92YT77vFjYrjMNU2wHp4ypwYD62HqDUqS5U\"]}},\"version\":1}",
+  "bytecode": "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212201d8d8a90f544582f22344fcfd26762384dcf3b59490e78a0a860021c63120a5f64736f6c63430008040033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212201d8d8a90f544582f22344fcfd26762384dcf3b59490e78a0a860021c63120a5f64736f6c63430008040033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "273:389:12:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;273:389:12;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "273:389:12:-:0;;;;;;;;",
+  "source": "//SPDX-License-Identifier: Unlicense\npragma solidity ^0.8.4;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\n\nimport \"../interfaces/ICeloRegistry.sol\";\n\n// Not being used right now -- consider this in the future once\n// dev tooling to use the registry is easiers\nlibrary CeloRegistry {\n  address private constant REGISTRY =\n    0x000000000000000000000000000000000000ce10;\n  bytes32 private constant STABLE_TOKEN_REGISTRY_ID =\n    keccak256(abi.encodePacked(\"StableToken\"));\n\n  function getStableToken() internal view returns (IERC20) {\n    return\n      IERC20(\n        ICeloRegistry(REGISTRY).getAddressForOrDie(STABLE_TOKEN_REGISTRY_ID)\n      );\n  }\n}\n",
+  "sourcePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/libraries/CeloRegistry.sol",
+  "ast": {
+    "absolutePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/libraries/CeloRegistry.sol",
+    "exportedSymbols": {
+      "CeloRegistry": [
+        1587
+      ],
+      "ICeloRegistry": [
+        1526
+      ],
+      "IERC20": [
+        2664
+      ]
+    },
+    "id": 1588,
+    "license": "Unlicense",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1557,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:23:12"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 1558,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1588,
+        "sourceUnit": 2665,
+        "src": "62:56:12",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/ICeloRegistry.sol",
+        "file": "../interfaces/ICeloRegistry.sol",
+        "id": 1559,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1588,
+        "sourceUnit": 1527,
+        "src": "120:41:12",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 1587,
+        "linearizedBaseContracts": [
+          1587
+        ],
+        "name": "CeloRegistry",
+        "nameLocation": "281:12:12",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 1562,
+            "mutability": "constant",
+            "name": "REGISTRY",
+            "nameLocation": "323:8:12",
+            "nodeType": "VariableDeclaration",
+            "scope": 1587,
+            "src": "298:82:12",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 1560,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "298:7:12",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "hexValue": "307830303030303030303030303030303030303030303030303030303030303030303030303063653130",
+              "id": 1561,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "338:42:12",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              },
+              "value": "0x000000000000000000000000000000000000ce10"
+            },
+            "visibility": "private"
+          },
+          {
+            "constant": true,
+            "id": 1570,
+            "mutability": "constant",
+            "name": "STABLE_TOKEN_REGISTRY_ID",
+            "nameLocation": "409:24:12",
+            "nodeType": "VariableDeclaration",
+            "scope": 1587,
+            "src": "384:98:12",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 1563,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "384:7:12",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "arguments": [
+                    {
+                      "hexValue": "537461626c65546f6b656e",
+                      "id": 1567,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "string",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "467:13:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_stringliteral_a676d30f91cbc454bebc9ca2df3e4a03df04d387728c3c700f40e4f04bdb298f",
+                        "typeString": "literal_string \"StableToken\""
+                      },
+                      "value": "StableToken"
+                    }
+                  ],
+                  "expression": {
+                    "argumentTypes": [
+                      {
+                        "typeIdentifier": "t_stringliteral_a676d30f91cbc454bebc9ca2df3e4a03df04d387728c3c700f40e4f04bdb298f",
+                        "typeString": "literal_string \"StableToken\""
+                      }
+                    ],
+                    "expression": {
+                      "id": 1565,
+                      "name": "abi",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967295,
+                      "src": "450:3:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_magic_abi",
+                        "typeString": "abi"
+                      }
+                    },
+                    "id": 1566,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "lValueRequested": false,
+                    "memberName": "encodePacked",
+                    "nodeType": "MemberAccess",
+                    "src": "450:16:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                      "typeString": "function () pure returns (bytes memory)"
+                    }
+                  },
+                  "id": 1568,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "functionCall",
+                  "lValueRequested": false,
+                  "names": [],
+                  "nodeType": "FunctionCall",
+                  "src": "450:31:12",
+                  "tryCall": false,
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes memory"
+                  }
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes memory"
+                  }
+                ],
+                "id": 1564,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 4294967288,
+                "src": "440:9:12",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 1569,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "440:42:12",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 1585,
+              "nodeType": "Block",
+              "src": "544:116:12",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "id": 1581,
+                            "name": "STABLE_TOKEN_REGISTRY_ID",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1570,
+                            "src": "622:24:12",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes32",
+                              "typeString": "bytes32"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_bytes32",
+                              "typeString": "bytes32"
+                            }
+                          ],
+                          "expression": {
+                            "arguments": [
+                              {
+                                "id": 1578,
+                                "name": "REGISTRY",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 1562,
+                                "src": "593:8:12",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "id": 1577,
+                              "name": "ICeloRegistry",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1526,
+                              "src": "579:13:12",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_ICeloRegistry_$1526_$",
+                                "typeString": "type(contract ICeloRegistry)"
+                              }
+                            },
+                            "id": 1579,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "typeConversion",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "579:23:12",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_ICeloRegistry_$1526",
+                              "typeString": "contract ICeloRegistry"
+                            }
+                          },
+                          "id": 1580,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "getAddressForOrDie",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 1508,
+                          "src": "579:42:12",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_external_view$_t_bytes32_$returns$_t_address_$",
+                            "typeString": "function (bytes32) view external returns (address)"
+                          }
+                        },
+                        "id": 1582,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "579:68:12",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 1576,
+                      "name": "IERC20",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2664,
+                      "src": "563:6:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_contract$_IERC20_$2664_$",
+                        "typeString": "type(contract IERC20)"
+                      }
+                    },
+                    "id": 1583,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "563:92:12",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$2664",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "functionReturnParameters": 1575,
+                  "id": 1584,
+                  "nodeType": "Return",
+                  "src": "550:105:12"
+                }
+              ]
+            },
+            "id": 1586,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getStableToken",
+            "nameLocation": "496:14:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1571,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "510:2:12"
+            },
+            "returnParameters": {
+              "id": 1575,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1574,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1586,
+                  "src": "536:6:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$2664",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "id": 1573,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1572,
+                      "name": "IERC20",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2664,
+                      "src": "536:6:12"
+                    },
+                    "referencedDeclaration": 2664,
+                    "src": "536:6:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$2664",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "535:8:12"
+            },
+            "scope": 1587,
+            "src": "487:173:12",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 1588,
+        "src": "273:389:12",
+        "usedErrors": []
+      }
+    ],
+    "src": "37:626:12"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/libraries/CeloRegistry.sol",
+    "exportedSymbols": {
+      "CeloRegistry": [
+        1587
+      ],
+      "ICeloRegistry": [
+        1526
+      ],
+      "IERC20": [
+        2664
+      ]
+    },
+    "id": 1588,
+    "license": "Unlicense",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1557,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:23:12"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 1558,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1588,
+        "sourceUnit": 2665,
+        "src": "62:56:12",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/ICeloRegistry.sol",
+        "file": "../interfaces/ICeloRegistry.sol",
+        "id": 1559,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1588,
+        "sourceUnit": 1527,
+        "src": "120:41:12",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 1587,
+        "linearizedBaseContracts": [
+          1587
+        ],
+        "name": "CeloRegistry",
+        "nameLocation": "281:12:12",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 1562,
+            "mutability": "constant",
+            "name": "REGISTRY",
+            "nameLocation": "323:8:12",
+            "nodeType": "VariableDeclaration",
+            "scope": 1587,
+            "src": "298:82:12",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 1560,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "298:7:12",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "hexValue": "307830303030303030303030303030303030303030303030303030303030303030303030303063653130",
+              "id": 1561,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "338:42:12",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              },
+              "value": "0x000000000000000000000000000000000000ce10"
+            },
+            "visibility": "private"
+          },
+          {
+            "constant": true,
+            "id": 1570,
+            "mutability": "constant",
+            "name": "STABLE_TOKEN_REGISTRY_ID",
+            "nameLocation": "409:24:12",
+            "nodeType": "VariableDeclaration",
+            "scope": 1587,
+            "src": "384:98:12",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 1563,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "384:7:12",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "arguments": [
+                    {
+                      "hexValue": "537461626c65546f6b656e",
+                      "id": 1567,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "string",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "467:13:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_stringliteral_a676d30f91cbc454bebc9ca2df3e4a03df04d387728c3c700f40e4f04bdb298f",
+                        "typeString": "literal_string \"StableToken\""
+                      },
+                      "value": "StableToken"
+                    }
+                  ],
+                  "expression": {
+                    "argumentTypes": [
+                      {
+                        "typeIdentifier": "t_stringliteral_a676d30f91cbc454bebc9ca2df3e4a03df04d387728c3c700f40e4f04bdb298f",
+                        "typeString": "literal_string \"StableToken\""
+                      }
+                    ],
+                    "expression": {
+                      "id": 1565,
+                      "name": "abi",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967295,
+                      "src": "450:3:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_magic_abi",
+                        "typeString": "abi"
+                      }
+                    },
+                    "id": 1566,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "lValueRequested": false,
+                    "memberName": "encodePacked",
+                    "nodeType": "MemberAccess",
+                    "src": "450:16:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                      "typeString": "function () pure returns (bytes memory)"
+                    }
+                  },
+                  "id": 1568,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "functionCall",
+                  "lValueRequested": false,
+                  "names": [],
+                  "nodeType": "FunctionCall",
+                  "src": "450:31:12",
+                  "tryCall": false,
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes memory"
+                  }
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes memory"
+                  }
+                ],
+                "id": 1564,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 4294967288,
+                "src": "440:9:12",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 1569,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "440:42:12",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 1585,
+              "nodeType": "Block",
+              "src": "544:116:12",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "id": 1581,
+                            "name": "STABLE_TOKEN_REGISTRY_ID",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1570,
+                            "src": "622:24:12",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes32",
+                              "typeString": "bytes32"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_bytes32",
+                              "typeString": "bytes32"
+                            }
+                          ],
+                          "expression": {
+                            "arguments": [
+                              {
+                                "id": 1578,
+                                "name": "REGISTRY",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 1562,
+                                "src": "593:8:12",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "id": 1577,
+                              "name": "ICeloRegistry",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1526,
+                              "src": "579:13:12",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_ICeloRegistry_$1526_$",
+                                "typeString": "type(contract ICeloRegistry)"
+                              }
+                            },
+                            "id": 1579,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "typeConversion",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "579:23:12",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_ICeloRegistry_$1526",
+                              "typeString": "contract ICeloRegistry"
+                            }
+                          },
+                          "id": 1580,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "getAddressForOrDie",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 1508,
+                          "src": "579:42:12",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_external_view$_t_bytes32_$returns$_t_address_$",
+                            "typeString": "function (bytes32) view external returns (address)"
+                          }
+                        },
+                        "id": 1582,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "579:68:12",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 1576,
+                      "name": "IERC20",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2664,
+                      "src": "563:6:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_contract$_IERC20_$2664_$",
+                        "typeString": "type(contract IERC20)"
+                      }
+                    },
+                    "id": 1583,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "563:92:12",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$2664",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "functionReturnParameters": 1575,
+                  "id": 1584,
+                  "nodeType": "Return",
+                  "src": "550:105:12"
+                }
+              ]
+            },
+            "id": 1586,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getStableToken",
+            "nameLocation": "496:14:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1571,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "510:2:12"
+            },
+            "returnParameters": {
+              "id": 1575,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1574,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1586,
+                  "src": "536:6:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$2664",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "id": 1573,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1572,
+                      "name": "IERC20",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2664,
+                      "src": "536:6:12"
+                    },
+                    "referencedDeclaration": 2664,
+                    "src": "536:6:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$2664",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "535:8:12"
+            },
+            "scope": 1587,
+            "src": "487:173:12",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 1588,
+        "src": "273:389:12",
+        "usedErrors": []
+      }
+    ],
+    "src": "37:626:12"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.0",
+  "updatedAt": "2022-02-02T18:24:20.558Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

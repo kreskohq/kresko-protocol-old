@@ -1,0 +1,243 @@
+{
+  "contractName": "IReserve",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferStableTokenToAMM",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferStableTokenToAMM\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IReserve.sol\":\"IReserve\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":999999},\"remappings\":[]},\"sources\":{\"/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IReserve.sol\":{\"keccak256\":\"0x34ce365374925645c46fbf0d8028eb728701075fd89d58b4303f8055c01d7c66\",\"license\":\"Unlicense\",\"urls\":[\"bzz-raw://5eb1f98d6c59a3f0d9e66be4c3867395b940cd0b4bfea9d3f6d5da753f64be93\",\"dweb:/ipfs/QmRef3wnMgAwCnZnWSr3qEup1MJpNqqbgYaP9iJZAtp6VS\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "//SPDX-License-Identifier: Unlicense\npragma solidity ^0.8.4;\n\ninterface IReserve {\n  function transferStableTokenToAMM(uint256 amount) external;\n}\n",
+  "sourcePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IReserve.sol",
+  "ast": {
+    "absolutePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IReserve.sol",
+    "exportedSymbols": {
+      "IReserve": [
+        1555
+      ]
+    },
+    "id": 1556,
+    "license": "Unlicense",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1549,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:23:11"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 1555,
+        "linearizedBaseContracts": [
+          1555
+        ],
+        "name": "IReserve",
+        "nameLocation": "72:8:11",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "83fe13e9",
+            "id": 1554,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "transferStableTokenToAMM",
+            "nameLocation": "94:24:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1552,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1551,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "127:6:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1554,
+                  "src": "119:14:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1550,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "119:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "118:16:11"
+            },
+            "returnParameters": {
+              "id": 1553,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "143:0:11"
+            },
+            "scope": 1555,
+            "src": "85:59:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1556,
+        "src": "62:84:11",
+        "usedErrors": []
+      }
+    ],
+    "src": "37:110:11"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/pk/Projects/kresko/kresko-protocol-old/contracts/interfaces/IReserve.sol",
+    "exportedSymbols": {
+      "IReserve": [
+        1555
+      ]
+    },
+    "id": 1556,
+    "license": "Unlicense",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1549,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:23:11"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 1555,
+        "linearizedBaseContracts": [
+          1555
+        ],
+        "name": "IReserve",
+        "nameLocation": "72:8:11",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "83fe13e9",
+            "id": 1554,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "transferStableTokenToAMM",
+            "nameLocation": "94:24:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1552,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1551,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "127:6:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1554,
+                  "src": "119:14:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1550,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "119:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "118:16:11"
+            },
+            "returnParameters": {
+              "id": 1553,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "143:0:11"
+            },
+            "scope": 1555,
+            "src": "85:59:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1556,
+        "src": "62:84:11",
+        "usedErrors": []
+      }
+    ],
+    "src": "37:110:11"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.0",
+  "updatedAt": "2022-02-02T18:24:20.557Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
